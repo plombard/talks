@@ -8,12 +8,12 @@ public class SVNDocument {
     private final String name;
     private final String author;
     private final String repository;
-    private final long revision;
+    private final Long revision;
     private final Date date;
-    private final long size;
+    private final Long size;
     private final String message;
 
-    public SVNDocument(String path, String name, String author, String repository, long revision, Date date, long size, String message) {
+    public SVNDocument(String path, String name, String author, String repository, Long revision, Date date, Long size, String message) {
         this.path = path;
         this.name = name;
         this.author = author;
@@ -23,4 +23,6 @@ public class SVNDocument {
         this.size = size;
         this.message = message;
     }
+
+
 }
