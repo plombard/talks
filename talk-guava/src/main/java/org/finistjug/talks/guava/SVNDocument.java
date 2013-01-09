@@ -1,23 +1,23 @@
 package org.finistjug.talks.guava;
 
 import com.google.common.base.Objects;
-import com.google.common.collect.ComparisonChain;
 
 import java.util.Date;
 
+import static com.google.common.base.Preconditions.checkArgument;
 import static com.google.common.base.Preconditions.checkNotNull;
 
 
 public class SVNDocument {
 
-    private final String path;
-    private final String name;
-    private final String author;
-    private final String repository;
-    private final Long revision;
-    private final Date date;
-    private final Long size;
-    private final String message;
+    public String path;
+    public String name;
+    public String author;
+    public String repository;
+    public Long revision;
+    public Date date;
+    public Long size;
+    public String message;
 
     public SVNDocument(String path, String name, String author, String repository, Long revision, Date date, Long size, String message) {
         // Ensure that required fields are not null
@@ -25,7 +25,9 @@ public class SVNDocument {
         this.name = checkNotNull(name);
         this.author = author;
         this.repository = checkNotNull(repository);
-        this.revision = checkNotNull(revision);
+        // throws a IllegalStateException if the revision is negative
+        checkArgument(revision >= 0, "Revision number %s cannot be negative", revision);
+        this.revision = revision;
         this.date = date;
         this.size = size;
         this.message = message;
@@ -69,16 +71,4 @@ public class SVNDocument {
                 .toString();
     }
 
-    public int compareTo(SVNDocument other) {
-        // if repos are not the same,
-        // we see the documents as "equals"
-        if (repository.compareTo(other.repository) != 0) {
-            return 0;
-        }
-        // now the pretty part
-        return ComparisonChain.start()
-                .compare(date, other.date)
-                .compare(revision, other.revision)
-                .result();
-    }
 }
