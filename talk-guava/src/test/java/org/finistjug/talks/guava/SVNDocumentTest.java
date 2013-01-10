@@ -65,15 +65,6 @@ public class SVNDocumentTest {
     }
 
     /**
-     * Uses the Files.readLines to instantiate a list with a LineProcessor
-     *
-     * @throws Exception
-     */
-    public void testFileReadLines() throws Exception {
-
-    }
-
-    /**
      * Uses "functional" programming to change values in a list
      *
      * @throws Exception
